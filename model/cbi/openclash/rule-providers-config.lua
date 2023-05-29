@@ -22,9 +22,9 @@ function IsYmlFile(e)
    return e == ".yml"
 end
 
-m = Map(openclash, translate("Edit Rule Providers"))
+m = Map(openclash, translate(""))
 m.pageaction = false
-m.description=translate("规则集使用介绍：https://lancellc.gitbook.io/clash/clash-config-file/rule-provider")
+m.description=translate("")
 m.redirect = luci.dispatcher.build_url("admin/services/openclash/rule-providers-settings")
 if m.uci:get(openclash, sid) ~= "rule_providers" then
 	luci.http.redirect(m.redirect)
@@ -151,5 +151,5 @@ o.write = function()
    luci.http.redirect(m.redirect)
 end
 
-m:append(Template("openclash/toolbar_show"))
+											
 return m

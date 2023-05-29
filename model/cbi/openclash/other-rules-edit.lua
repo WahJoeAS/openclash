@@ -25,7 +25,7 @@ end
 
 m = Map(openclash, translate("Other Rules Edit"))
 m.pageaction = false
-m.redirect = luci.dispatcher.build_url("admin/services/openclash/settings")
+m.redirect = luci.dispatcher.build_url("admin/services/openclash/config-overwrite")
 if m.uci:get(openclash, sid) ~= "other_rules" then
 	luci.http.redirect(m.redirect)
 	return
@@ -134,17 +134,6 @@ end
 o:value("DIRECT")
 o:value("REJECT")
 
-o = s:option(ListValue, "Douyin", translate("Douyin"))
-o:depends("rule_name", "lhie1")
-o.rmempty = true
-for groupname in string.gmatch(groupnames, "([^'##\n']+)##") do
-  if groupname ~= nil and groupname ~= "" then
-    o:value(groupname)
-  end
-end
-o:value("DIRECT")
-o:value("REJECT")
-
 o = s:option(ListValue, "Bahamut", translate("Bahamut"))
 o:depends("rule_name", "lhie1")
 o.rmempty = true
@@ -200,6 +189,17 @@ end
 o:value("DIRECT")
 o:value("REJECT")
 
+o = s:option(ListValue, "AppleTV", translate("Apple TV"))
+o:depends("rule_name", "lhie1")
+o.rmempty = true
+for groupname in string.gmatch(groupnames, "([^'##\n']+)##") do
+  if groupname ~= nil and groupname ~= "" then
+    o:value(groupname)
+  end
+end
+o:value("DIRECT")
+o:value("REJECT")
+
 o = s:option(ListValue, "GoogleFCM", translate("Google FCM"))
 o:depends("rule_name", "lhie1")
 o.rmempty = true
@@ -223,6 +223,17 @@ o:value("DIRECT")
 o:value("REJECT")
 
 o = s:option(ListValue, "Microsoft", translate("Microsoft"))
+o:depends("rule_name", "lhie1")
+o.rmempty = true
+for groupname in string.gmatch(groupnames, "([^'##\n']+)##") do
+  if groupname ~= nil and groupname ~= "" then
+    o:value(groupname)
+  end
+end
+o:value("DIRECT")
+o:value("REJECT")
+
+o = s:option(ListValue, "ChatGPT", translate("ChatGPT"))
 o:depends("rule_name", "lhie1")
 o.rmempty = true
 for groupname in string.gmatch(groupnames, "([^'##\n']+)##") do
@@ -332,6 +343,17 @@ end
 o:value("DIRECT")
 o:value("REJECT")
 
+o = s:option(ListValue, "Discord", translate("Discord"))
+o:depends("rule_name", "lhie1")
+o.rmempty = true
+for groupname in string.gmatch(groupnames, "([^'##\n']+)##") do
+  if groupname ~= nil and groupname ~= "" then
+    o:value(groupname)
+  end
+end
+o:value("DIRECT")
+o:value("REJECT")
+
 o = s:option(ListValue, "PayPal", translate("PayPal"))
 o:depends("rule_name", "lhie1")
 o.rmempty = true
@@ -403,5 +425,5 @@ o.write = function()
    luci.http.redirect(m.redirect)
 end
 
-m:append(Template("openclash/toolbar_show"))
+											
 return m

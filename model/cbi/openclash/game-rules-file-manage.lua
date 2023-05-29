@@ -14,6 +14,7 @@ for n,m in ipairs(fs.glob("/etc/openclash/game_rules/*"))do
 h=fs.stat(m)
 if h then
 g[n]={}
+g[n].num=string.format(n)
 g[n].name=fs.basename(m)
 g[n].mtime=os.date("%Y-%m-%d %H:%M:%S",h.mtime)
 g[n].size=fs.filesize(h.size)
@@ -22,10 +23,11 @@ g[n].enable=false
 end
 end
 
-rule_form=SimpleForm("game_rules_file_list",translate("Game Rules File List"))
+rule_form=SimpleForm("game_rules_file_list",translate(""))
 rule_form.reset=false
 rule_form.submit=false
 tb2=rule_form:section(Table,g)
+nu2=tb2:option(DummyValue,"num",translate("Serial Number"))
 nm2=tb2:option(DummyValue,"name",translate("File Name"))
 mt2=tb2:option(DummyValue,"mtime",translate("Update Time"))
 sz2=tb2:option(DummyValue,"size",translate("Size"))
@@ -117,5 +119,5 @@ o.write = function()
   HTTP.redirect(DISP.build_url("admin", "services", "openclash", "config"))
 end
 
-rule_form:append(Template("openclash/toolbar_show"))
+													
 return rule_form

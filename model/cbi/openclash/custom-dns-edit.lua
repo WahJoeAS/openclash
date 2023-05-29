@@ -11,9 +11,9 @@ font_off = [[</b>]]
 bold_on  = [[<strong>]]
 bold_off = [[</strong>]]
 
-m = Map(openclash, translate("Add Custom DNS Servers"))
+m = Map(openclash, translate(""))
 m.pageaction = false
-m.redirect = luci.dispatcher.build_url("admin/services/openclash/settings")
+m.redirect = luci.dispatcher.build_url("admin/services/openclash/config-overwrite")
 if m.uci:get(openclash, sid) ~= "dns_servers" then
 	luci.http.redirect(m.redirect)
 	return
@@ -131,5 +131,5 @@ o.write = function()
    luci.http.redirect(m.redirect)
 end
 
-m:append(Template("openclash/toolbar_show"))
+											
 return m

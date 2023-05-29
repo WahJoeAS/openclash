@@ -14,7 +14,7 @@ font_off = [[</b>]]
 bold_on  = [[<strong>]]
 bold_off = [[</strong>]]
 
-m = Map("openclash",  translate("Config Update"))
+m = Map("openclash",  translate(""))
 m.pageaction = false
 
 s = m:section(TypedSection, "openclash")
@@ -145,6 +145,6 @@ o.write = function()
   HTTP.redirect(DISP.build_url("admin", "services", "openclash"))
 end
 
-m:append(Template("openclash/toolbar_show"))
+											
 
 return m
